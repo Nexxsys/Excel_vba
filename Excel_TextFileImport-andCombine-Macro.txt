@@ -1,0 +1,276 @@
+Sub ImportFiles()
+'
+' Macro2 Macro
+'
+Dim StrInput, SheetName1 As String
+Dim i As Integer, j As Integer
+Dim fileArray(1 To 27) As String
+fileArray(1) = "RPT_PAT_COST_EXTRACT_2015-03-01TO15.txt"
+fileArray(2) = "RPT_PAT_COST_EXTRACT_2015-03-16TO31.txt"
+fileArray(3) = "RPT_PAT_COST_EXTRACT_2015-04-01TO15.txt"
+fileArray(4) = "RPT_PAT_COST_EXTRACT_2015-04-16TO30.txt"
+fileArray(5) = "RPT_PAT_COST_EXTRACT-2015-05-01TO15.txt"
+fileArray(6) = "RPT_PAT_COST_EXTRACT-2015-05-16TO31.txt"
+fileArray(7) = "RPT_PAT_COST_EXTRACT-2015-06-01TO15.txt"
+fileArray(8) = "RPT_PAT_COST_EXTRACT-2015-06-16TO30.txt"
+fileArray(9) = "RPT_PAT_COST_EXTRACT-2015-07-01TO15.txt"
+fileArray(10) = "RPT_PAT_COST_EXTRACT-2015-07-16TO31.txt"
+fileArray(11) = "RPT_PAT_COST_EXTRACT-2015-08-01TO15.txt"
+fileArray(12) = "RPT_PAT_COST_EXTRACT-2015-08-16TO31.txt"
+fileArray(13) = "RPT_PAT_COST_EXTRACT-2015-09-01TO15.txt"
+fileArray(14) = "RPT_PAT_COST_EXTRACT-2015-09-16TO30.txt"
+fileArray(15) = "RPT_PAT_COST_EXTRACT-2015-10-01TO15.txt"
+fileArray(16) = "RPT_PAT_COST_EXTRACT-2015-10-16TO31.txt"
+fileArray(17) = "RPT_PAT_COST_EXTRACT_2015-11-01TO15.txt"
+fileArray(18) = "RPT_PAT_COST_EXTRACT_2015-11-16TO30.txt"
+fileArray(19) = "RPT_PAT_COST_EXTRACT_2015-12-01TO15.txt"
+fileArray(20) = "RPT_PAT_COST_EXTRACT_2015-12-16TO31.txt"
+fileArray(21) = "RPT_PAT_COST_EXTRACT_2016-01-01TO15.txt"
+fileArray(23) = "RPT_PAT_COST_EXTRACT_2016-01-16TO31.txt" ' Stopped Last time
+fileArray(24) = "RPT_PAT_COST_EXTRACT_2016-02-01TO15.txt"
+fileArray(25) = "RPT_PAT_COST_EXTRACT_2016-02-16TO29.txt"
+fileArray(26) = "RPT_PAT_COST_EXTRACT-2016-03-01TO15.txt"
+fileArray(27) = "RPT_PAT_COST_EXTRACT-2016-03-16TO31.txt"
+
+
+'StrInput = InputBox("Provide File Name", "File Name")
+
+For i = 1 To 27
+    StrInput = fileArray(i)
+'
+    With ActiveSheet.QueryTables.Add(Connection:= _
+        "TEXT;H:\" + StrInput, Destination:=Range("$A$1") _
+        )
+        '.CommandType = 0
+        '.Name = "RPT_PAT_COST_EXTRACT_2015-01-01TO15_1"
+        .FieldNames = True
+        .RowNumbers = False
+        .FillAdjacentFormulas = False
+        .PreserveFormatting = True
+        .RefreshOnFileOpen = False
+        .RefreshStyle = xlInsertDeleteCells
+        .SavePassword = False
+        .SaveData = True
+        .AdjustColumnWidth = True
+        .RefreshPeriod = 0
+        .TextFilePromptOnRefresh = False
+        .TextFilePlatform = 437
+        .TextFileStartRow = 1
+        .TextFileParseType = xlFixedWidth
+        .TextFileTextQualifier = xlTextQualifierDoubleQuote
+        .TextFileConsecutiveDelimiter = False
+        .TextFileTabDelimiter = True
+        .TextFileSemicolonDelimiter = False
+        .TextFileCommaDelimiter = False
+        .TextFileSpaceDelimiter = False
+        .TextFileColumnDataTypes = Array(1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1)
+        .TextFileFixedColumnWidths = Array(11, 16, 4, 12, 16, 1, 8, 20, 41, 79, 14)
+        .TextFileTrailingMinusNumbers = True
+        .Refresh BackgroundQuery:=False
+    End With
+    SheetName1 = Mid(StrInput, 22, Len(StrInput))
+    ActiveSheet.Name = Left(SheetName1, Len(SheetName1) - 4)
+    Sheets.Add After:=ActiveSheet
+    Application.Wait (Now + TimeValue("0:00:01"))
+Next i
+
+    
+End Sub
+
+Sub ImportSingleFile()
+'
+' Macro2 Macro
+'
+Dim StrInput, SheetName1 As String
+Dim i As Integer, j As Integer
+StrInput = InputBox("Provide File Name", "File Name")
+
+'
+    With ActiveSheet.QueryTables.Add(Connection:= _
+        "TEXT;H:\" + StrInput, Destination:=Range("$A$1") _
+        )
+        '.CommandType = 0
+        '.Name = "RPT_PAT_COST_EXTRACT_2015-01-01TO15_1"
+        .FieldNames = True
+        .RowNumbers = False
+        .FillAdjacentFormulas = False
+        .PreserveFormatting = True
+        .RefreshOnFileOpen = False
+        .RefreshStyle = xlInsertDeleteCells
+        .SavePassword = False
+        .SaveData = True
+        .AdjustColumnWidth = True
+        .RefreshPeriod = 0
+        .TextFilePromptOnRefresh = False
+        .TextFilePlatform = 437
+        .TextFileStartRow = 1
+        .TextFileParseType = xlFixedWidth
+        .TextFileTextQualifier = xlTextQualifierDoubleQuote
+        .TextFileConsecutiveDelimiter = False
+        .TextFileTabDelimiter = True
+        .TextFileSemicolonDelimiter = False
+        .TextFileCommaDelimiter = False
+        .TextFileSpaceDelimiter = False
+        .TextFileColumnDataTypes = Array(1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1)
+        .TextFileFixedColumnWidths = Array(11, 16, 4, 12, 16, 1, 8, 20, 41, 79, 14)
+        .TextFileTrailingMinusNumbers = True
+        .Refresh BackgroundQuery:=False
+    End With
+    SheetName1 = Mid(StrInput, 22, Len(StrInput))
+    ActiveSheet.Name = Left(SheetName1, Len(SheetName1) - 4)
+    Sheets.Add After:=ActiveSheet
+
+    
+End Sub
+
+'
+'
+'Function LastRow(sh As Worksheet)
+'    On Error Resume Next
+'    LastRow = sh.Cells.Find(What:="*", _
+'                            After:=sh.Range("A1"), _
+'                            Lookat:=xlPart, _
+'                            LookIn:=xlFormulas, _
+'                            SearchOrder:=xlByRows, _
+'                            SearchDirection:=xlPrevious, _
+'                            MatchCase:=False).Row
+'    On Error GoTo 0
+'End Function
+'
+'Function LastCol(sh As Worksheet)
+'    On Error Resume Next
+'    LastCol = sh.Cells.Find(What:="*", _
+'                            After:=sh.Range("A1"), _
+'                            Lookat:=xlPart, _
+'                            LookIn:=xlFormulas, _
+'                            SearchOrder:=xlByColumns, _
+'                            SearchDirection:=xlPrevious, _
+'                            MatchCase:=False).Column
+'    On Error GoTo 0
+'End Function
+'
+'Sub CopyRangeFromMultiWorksheets()
+'    Dim sh As Worksheet
+'    Dim DestSh As Worksheet
+'    Dim Last As Long
+'    Dim CopyRng As Range
+'
+'    With Application
+'        .ScreenUpdating = False
+'        .EnableEvents = False
+'    End With
+'
+'    ' Delete the summary sheet if it exists.
+'    Application.DisplayAlerts = False
+'    On Error Resume Next
+'    ActiveWorkbook.Worksheets("RDBMergeSheet").Delete
+'    On Error GoTo 0
+'    Application.DisplayAlerts = True
+'
+'    ' Add a new summary worksheet.
+'    Set DestSh = ActiveWorkbook.Worksheets.Add
+'    DestSh.Name = "RDBMergeSheet"
+'
+'    ' Loop through all worksheets and copy the data to the
+'    ' summary worksheet.
+'    For Each sh In ActiveWorkbook.Worksheets
+'        If sh.Name <> DestSh.Name Then
+'
+'            ' Find the last row with data on the summary worksheet.
+'            Last = LastRow(DestSh)
+'
+'            ' Specify the range to place the data.
+'            'Set CopyRng = sh.Range("A1:G1")
+'            Set CopyRng = sh.UsedRange
+'
+'            ' Test to see whether there are enough rows in the summary
+'            ' worksheet to copy all the data.
+'            If Last + CopyRng.Rows.Count > DestSh.Rows.Count Then
+'                MsgBox "There are not enough rows in the " & _
+'                   "summary worksheet to place the data."
+'                GoTo ExitTheSub
+'            End If
+'
+'            ' This statement copies values and formats from each
+'            ' worksheet.
+'            CopyRng.Copy
+'            With DestSh.Cells(Last + 1, "A")
+'                .PasteSpecial xlPasteValues
+'                .PasteSpecial xlPasteFormats
+'                Application.CutCopyMode = False
+'            End With
+'
+'            ' Optional: This statement will copy the sheet
+'            ' name in the H column.
+'            DestSh.Cells(Last + 1, "H").Resize(CopyRng.Rows.Count).Value = sh.Name
+'
+'        End If
+'    Next
+'
+'ExitTheSub:
+'
+'    Application.Goto DestSh.Cells(1)
+'
+'    ' AutoFit the column width in the summary sheet.
+'    DestSh.Columns.AutoFit
+'
+'    With Application
+'        .ScreenUpdating = True
+'        .EnableEvents = True
+'    End With
+'End Sub
+
+
+Sub CopyFromWorksheets()
+    Dim wrk As Workbook 'Workbook object - Always good to work with object variables
+    Dim sht As Worksheet 'Object for handling worksheets in loop
+    Dim trg As Worksheet 'Master Worksheet
+    Dim rng As Range 'Range object
+    Dim colCount As Integer 'Column count in tables in the worksheets
+     
+    Set wrk = ActiveWorkbook 'Working in active workbook
+     
+    For Each sht In wrk.Worksheets
+        If sht.Name = "Master" Then
+            MsgBox "There is a worksheet called as 'Master'." & vbCrLf & _
+            "Please remove or rename this worksheet since 'Master' would be" & _
+            "the name of the result worksheet of this process.", vbOKOnly + vbExclamation, "Error"
+            Exit Sub
+        End If
+    Next sht
+     
+     'We don't want screen updating
+    Application.ScreenUpdating = False
+     
+     'Add new worksheet as the last worksheet
+    Set trg = wrk.Worksheets.Add(After:=wrk.Worksheets(wrk.Worksheets.Count))
+     'Rename the new worksheet
+    trg.Name = "Master"
+     'Get column headers from the first worksheet
+     'Column count first
+    Set sht = wrk.Worksheets(1)
+    colCount = sht.Cells(1, 255).End(xlToLeft).Column
+     'Now retrieve headers, no copy&paste needed
+    With trg.Cells(1, 1).Resize(1, colCount)
+        .Value = sht.Cells(1, 1).Resize(1, colCount).Value
+         'Set font as bold
+        .Font.Bold = True
+    End With
+     
+     'We can start loop
+    For Each sht In wrk.Worksheets
+         'If worksheet in loop is the last one, stop execution (it is Master worksheet)
+        If sht.Index = wrk.Worksheets.Count Then
+            Exit For
+        End If
+         'Data range in worksheet - starts from second row as first rows are the header rows in all worksheets
+        Set rng = sht.Range(sht.Cells(2, 1), sht.Cells(65536, 1).End(xlUp).Resize(, colCount))
+         'Put data into the Master worksheet
+        trg.Cells(65536, 1).End(xlUp).Offset(1).Resize(rng.Rows.Count, rng.Columns.Count).Value = rng.Value
+    Next sht
+     'Fit the columns in Master worksheet
+    trg.Columns.AutoFit
+     
+     'Screen updating should be activated
+    Application.ScreenUpdating = True
+End Sub
